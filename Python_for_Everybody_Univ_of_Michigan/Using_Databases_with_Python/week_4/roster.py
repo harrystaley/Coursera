@@ -11,12 +11,12 @@ DROP TABLE IF EXISTS Member;
 DROP TABLE IF EXISTS Course;
 
 CREATE TABLE User (
-    id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    cur_id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     name   TEXT UNIQUE
 );
 
 CREATE TABLE Course (
-    id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    cur_id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     title  TEXT UNIQUE
 );
 
@@ -51,7 +51,7 @@ for entry in json_data:
                 VALUES ( ? )''',
                 (name, )
                 )
-    cur.execute('''SELECT id
+    cur.execute('''SELECT cur_id
                 FROM User
                 WHERE name = ? ''',
                 (name, )
@@ -62,7 +62,7 @@ for entry in json_data:
                 VALUES ( ? )''',
                 (title, )
                 )
-    cur.execute('''SELECT id
+    cur.execute('''SELECT cur_id
                 FROM Course
                 WHERE title = ? ''',
                 (title, )

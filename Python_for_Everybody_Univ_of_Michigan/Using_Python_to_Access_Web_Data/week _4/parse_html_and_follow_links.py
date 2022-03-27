@@ -29,10 +29,10 @@ while i < count:
 
     # Retrieve all of the anchor tags
     tags = soup('a')
-    # get all of the links using list comprehension.
-    links = [tag.get('href', None) for tag in tags]
+    # get the name
     name = tags[position].contents[0]
-    url = links[position]
+    # get the url
+    url = tags[position].get('href', None)
     i += 1  # increment our counter.
 
 print(name)

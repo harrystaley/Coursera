@@ -12,23 +12,23 @@ DROP TABLE IF EXISTS Track;
 DROP TABLE IF EXISTS Genre;
 
 CREATE TABLE Artist (
-    id      INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    cur_id      INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     name    TEXT UNIQUE
 );
 
 CREATE TABLE Genre (
-    id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    cur_id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     name    TEXT UNIQUE
 );
 
 CREATE TABLE Album (
-    id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    cur_id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     artist_id  INTEGER,
     title   TEXT UNIQUE
 );
 
 CREATE TABLE Track (
-    id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    cur_id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     title TEXT  UNIQUE,
     album_id  INTEGER,
     genre_id  INTEGER,
@@ -79,7 +79,7 @@ for entry in all_tracks:
     cur.execute('''INSERT OR IGNORE INTO Artist (name)
     VALUES ( ? );''', (artist,)
                 )
-    cur.execute('''SELECT id
+    cur.execute('''SELECT cur_id
     FROM Artist
     WHERE name = ? ;''', (artist,)
                 )
@@ -88,7 +88,7 @@ for entry in all_tracks:
     cur.execute('''INSERT OR IGNORE INTO Genre (name)
     VALUES ( ? );''', (genre,)
                 )
-    cur.execute('''SELECT id
+    cur.execute('''SELECT cur_id
     FROM Genre
     WHERE name = ? ;''', (genre,)
                 )
@@ -97,7 +97,7 @@ for entry in all_tracks:
     cur.execute('INSERT OR IGNORE INTO Album (title, artist_id)'
                 'VALUES ( ?, ? );', (album, artist_id)
                 )
-    cur.execute('''SELECT id
+    cur.execute('''SELECT cur_id
     FROM Album
     WHERE title = ?;''', (album,)
                 )
