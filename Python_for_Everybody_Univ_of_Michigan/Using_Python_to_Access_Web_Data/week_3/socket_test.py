@@ -1,20 +1,3 @@
-import socket
-
-new_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-address = 'data.pr4e.org'
-port = 80
-new_sock.connect((address, port))
-
-req_type = 'GET'
-url = 'http://data.pr4e.org/intro-short.txt'
-protocol = 'HTTP/1.0'
-request = f'{req_type} {url} {protocol}\r\n\r\n'.encode()
-new_sock.send(request)
-
-while True:
-    data = new_sock.recv(512)
-    if len(data) < 1:
-        break
-    print(data.decode(), end='')
-
-new_sock.close()
+version https://git-lfs.github.com/spec/v1
+oid sha256:60e2719db50f9c0b6ea622be9c9f31b237b81483a2d6334b0e2ebd5219aba3d1
+size 442
